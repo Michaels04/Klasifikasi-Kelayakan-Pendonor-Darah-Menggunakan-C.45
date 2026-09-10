@@ -2,33 +2,35 @@
 
 Repository ini berisi implementasi algoritma **C4.5 (Decision Tree)** untuk melakukan klasifikasi kelayakan pendonor darah berdasarkan karakteristik data pendonor.
 
-## 📌 Tentang Proyek
+## 📌 Deskripsi Proyek
 
-Proyek ini dibuat untuk menerapkan konsep klasifikasi menggunakan algoritma C4.5 secara manual dengan Python. Pemilihan atribut dilakukan menggunakan **Gain Ratio**, yang dihitung melalui beberapa tahap:
+Proyek ini menerapkan algoritma C4.5 secara manual menggunakan Python. Pemilihan atribut dilakukan berdasarkan **Gain Ratio**, yang melibatkan perhitungan:
 
 1. Entropy
 2. Information Gain
 3. Split Information
 4. Gain Ratio
-5. Pemilihan atribut dengan Gain Ratio tertinggi
+5. Pemilihan atribut terbaik
 6. Pembentukan decision tree secara rekursif
-7. Prediksi data train dan data test
+7. Prediksi data training dan testing
 8. Evaluasi akurasi
 
 ## 📊 Dataset
 
-Dataset berisi data pendonor darah dengan beberapa atribut karakteristik pendonor dan label **Status** sebagai target klasifikasi.
+Dataset berisi data karakteristik pendonor darah dengan **Status** sebagai target klasifikasi.
 
-File dataset:
-- `Data Donor Darah.xlsx`
+File dataset yang digunakan:
 
-Sebelum proses klasifikasi, beberapa atribut numerik dikategorikan (binning), yaitu:
-- **Umur** → `Umur<=25`, `25<Umur<=45`, `45<Umur`
-- **HB** → `Normal` / `Tidak Normal` berdasarkan jenis kelamin
-- **Tensi** → `Rendah`, `Normal`, `Tinggi`
-- **Berat Badan** → `BB<=60`, `60<BB<=80`, `80<BB`
+`Data Donor Darah.xlsx`
 
-> Dataset digunakan untuk keperluan pembelajaran/penelitian dan hasil klasifikasi tidak dimaksudkan sebagai pengganti keputusan medis atau pemeriksaan tenaga kesehatan.
+Beberapa variabel numerik dikategorikan terlebih dahulu melalui proses binning, antara lain:
+
+- **Umur:** `Umur<=25`, `25<Umur<=45`, `45<Umur`
+- **HB:** `Normal` / `Tidak Normal` berdasarkan jenis kelamin
+- **Tensi:** `Rendah`, `Normal`, `Tinggi`
+- **Berat Badan:** `BB<=60`, `60<BB<=80`, `80<BB`
+
+> Dataset dan hasil klasifikasi digunakan untuk keperluan pembelajaran/penelitian. Hasil model tidak dimaksudkan sebagai pengganti keputusan medis atau pemeriksaan tenaga kesehatan.
 
 ## 🛠️ Teknologi
 
@@ -46,6 +48,7 @@ Sebelum proses klasifikasi, beberapa atribut numerik dikategorikan (binning), ya
 ```text
 Klasifikasi-Kelayakan-Pendonor-Darah-Menggunakan-C.45/
 ├── Data Donor Darah.xlsx
+├── project_c45.py
 ├── ProjectC45_Kelompok 12.ipynb
 ├── requirements.txt
 └── README.md
@@ -53,51 +56,52 @@ Klasifikasi-Kelayakan-Pendonor-Darah-Menggunakan-C.45/
 
 ## 🚀 Cara Menjalankan
 
-1. Clone repository:
+### 1. Clone repository
 
 ```bash
 git clone https://github.com/Michaels04/Klasifikasi-Kelayakan-Pendonor-Darah-Menggunakan-C.45.git
-```
-
-2. Masuk ke folder repository:
-
-```bash
 cd Klasifikasi-Kelayakan-Pendonor-Darah-Menggunakan-C.45
 ```
 
-3. Install dependency:
+### 2. Install dependency
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Buka `ProjectC45_Kelompok 12.ipynb` menggunakan Jupyter Notebook, JupyterLab, atau Google Colab.
+### 3. Jalankan program
 
-5. Jalankan cell secara berurutan.
+```bash
+python project_c45.py
+```
+
+Program juga dapat dijalankan melalui Jupyter Notebook atau Google Colab menggunakan notebook yang tersedia di repository.
 
 ## 🔎 Implementasi C4.5
 
-Implementasi decision tree pada notebook dibuat dari fungsi-fungsi Python sendiri, bukan menggunakan classifier Decision Tree siap pakai untuk proses pembentukan tree. Fungsi utama yang digunakan antara lain:
+Implementasi decision tree dibuat menggunakan fungsi Python sendiri, bukan menggunakan classifier Decision Tree siap pakai untuk proses pembentukan tree.
 
-- `entropy()` untuk menghitung entropy
-- `info_gain()` untuk menghitung information gain
-- `split_info()` untuk menghitung split information
-- `gain_ratio()` untuk menghitung gain ratio
-- `choose_best_attribute()` untuk memilih atribut terbaik
-- `build_tree()` untuk membangun decision tree secara rekursif
-- `predict()` untuk melakukan prediksi
-- `build_anytree()` untuk membantu visualisasi struktur tree
+Fungsi utama meliputi:
 
-Data dibagi menjadi **80% data training dan 20% data testing** menggunakan `train_test_split` dengan `random_state=42` dan `stratify` berdasarkan label.
+- `entropy()` — menghitung entropy dataset
+- `info_gain()` — menghitung information gain
+- `split_info()` — menghitung split information
+- `gain_ratio()` — menghitung gain ratio
+- `choose_best_attribute()` — memilih atribut dengan gain ratio tertinggi
+- `build_tree()` — membangun decision tree secara rekursif
+- `predict()` — melakukan prediksi berdasarkan decision tree
+- `build_anytree()` — membantu menampilkan struktur decision tree
+
+Dataset dibagi menjadi **80% data training dan 20% data testing** menggunakan `train_test_split` dengan `random_state=42` dan `stratify` berdasarkan label.
 
 ## 📈 Evaluasi
 
-Notebook menghitung akurasi secara terpisah untuk:
+Model dievaluasi menggunakan akurasi pada:
 
 - Data Training
 - Data Testing
 
-Akurasi dihitung berdasarkan perbandingan antara hasil prediksi dan label aktual.
+Akurasi dihitung berdasarkan jumlah prediksi yang sesuai dengan label aktual dibandingkan dengan jumlah seluruh data.
 
 ## 👤 Author
 
